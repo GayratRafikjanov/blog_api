@@ -5,15 +5,16 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
 
-    def __str__(self):
-        return self.title
-
     author = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.title
+
+    
     def get_absolute_url(self):
         return f"/posts/{self.id}/"
 
