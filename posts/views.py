@@ -29,7 +29,7 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
 
 
     
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateVIew):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
   model = Post
   template_name = 'post_update.html'
   context_object_name = "post"
@@ -43,8 +43,8 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateVIew
     else:
       return False
 
-  def get_success_url(self)
-  return reverse_lazy('posts:detail', kwargs={'pk':self.object.pk})
+  def get_success_url(self):
+    return reverse_lazy('posts:detail', kwargs={'pk':self.object.pk})
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
@@ -60,8 +60,9 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView
       return True
     else:
       return False
-      
-    
+
+class PostView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+  pass
 
     
   
